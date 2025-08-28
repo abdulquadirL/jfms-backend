@@ -524,6 +524,7 @@ export interface ApiHomePageHomePage extends Struct.SingleTypeSchema {
         'blocks.card-grid',
         'blocks.news',
         'blocks.featured-articles',
+        'blocks.contact-section',
       ]
     >;
     createdAt: Schema.Attribute.DateTime;

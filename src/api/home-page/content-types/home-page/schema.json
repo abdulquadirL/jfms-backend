@@ -24,7 +24,8 @@
         "blocks.service-section",
         "blocks.card-grid",
         "blocks.news",
-        "blocks.featured-articles"
+        "blocks.featured-articles",
+        "blocks.contact-section"
       ]
     }
   }
