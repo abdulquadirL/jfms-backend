@@ -1,10 +1,10 @@
 {
-  "kind": "singleType",
-  "collectionName": "home_pages",
+  "kind": "collectionType",
+  "collectionName": "pages",
   "info": {
-    "singularName": "home-page",
-    "pluralName": "home-pages",
-    "displayName": "Home Page"
+    "singularName": "page",
+    "pluralName": "pages",
+    "displayName": "Page"
   },
   "options": {
     "draftAndPublish": true
@@ -17,13 +17,17 @@
     "description": {
       "type": "text"
     },
+    "slug": {
+      "type": "uid",
+      "targetField": "title"
+    },
     "blocks": {
       "type": "dynamiczone",
       "components": [
-        "blocks.hero",
         "blocks.service-section",
-        "blocks.card-grid",
         "blocks.news",
+        "blocks.hero",
+        "blocks.card-grid",
         "blocks.featured-articles"
       ]
     }

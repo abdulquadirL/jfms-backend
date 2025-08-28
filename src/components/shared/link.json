@@ -17,7 +17,7 @@
     },
     "isButtonLink": {
       "type": "boolean",
-      "default": false
+      "default": true
     },
     "type": {
       "type": "enumeration",
