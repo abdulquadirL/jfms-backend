@@ -10,6 +10,11 @@
     },
     "description": {
       "type": "text"
+    },
+    "contactInfo": {
+      "type": "component",
+      "component": "blocks.services-card",
+      "repeatable": true
     }
   },
   "config": {}

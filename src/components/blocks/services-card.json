@@ -21,11 +21,6 @@
     },
     "description": {
       "type": "text"
-    },
-    "feature": {
-      "type": "component",
-      "component": "feature.features",
-      "repeatable": true
     }
   },
   "config": {}
