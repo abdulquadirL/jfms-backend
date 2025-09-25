@@ -30,22 +30,15 @@ const populate = {
           }
         }
       },
-      // "blocks.featured-articles": {
-      //   populate: {
-      //     articles: {
-      //       populate: {
-      //         featuredImage: {
-      //           fields: ["alternativeText", "url"]
-      //         },
-      //         author: true,
-      //       }
-      //     }
-      //   }
-
-      //}
+      "blocks.contact-section": {
+        populate: {
+          contactInfo: true,
+        }
+      }
+        
     }
   }
-}
+};
 export default (config, { strapi }: { strapi: Core.Strapi }) => {
   // Add your own logic here.
   return async (ctx, next) => {
