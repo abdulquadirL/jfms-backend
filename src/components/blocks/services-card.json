@@ -8,16 +8,23 @@
     "icon": {
       "type": "enumeration",
       "enum": [
+        "MAP_PIN",
+        "PHONE_ICON",
+        "MAIL",
+        "CLOCK_ICON",
         "TRACTOR_ICON",
         "TRUCK_ICON",
-        "SETTINGS_ICON",
-        "USERS_ICON",
-        "WRENCH_ICON",
-        "MICROPHONES_ICON"
+        "WRENCH",
+        "USERS",
+        "SETTINGS",
+        "HEADPHONES"
       ]
     },
     "title": {
       "type": "string"
+    },
+    "content": {
+      "type": "text"
     },
     "description": {
       "type": "text"
