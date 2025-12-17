@@ -22,4 +22,5 @@ module.exports = async ({ strapi }) => {
   }
 
   fs.writeFileSync('export.json', JSON.stringify(data, null, 2));
+  console.log('\n✅ export.json created');
 };
