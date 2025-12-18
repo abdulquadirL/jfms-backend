@@ -25,8 +25,7 @@
         "blocks.card-grid",
         "blocks.news",
         "blocks.featured-articles",
-        "blocks.contact-section",
-        "blocks.contact"
+        "blocks.contact-section" 
       ]
     }
   }

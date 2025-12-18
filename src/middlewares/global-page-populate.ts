@@ -4,6 +4,7 @@
 
 import type { Core } from '@strapi/strapi';
 
+
 const populate = {
    blocks: {
     on: {
@@ -14,7 +15,7 @@ const populate = {
         }
         }
       },
-      "blocks.service-section": true,
+       "blocks.service-section": true,
       "blocks.card-grid": {
         populate: {
           cards: true,
