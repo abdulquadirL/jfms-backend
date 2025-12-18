@@ -1,50 +1,36 @@
-'use strict';
-
+// scripts/import-mysql.cjs
 const fs = require('fs');
 
-const BATCH_SIZE = 50;
-
-// Fields Strapi must NOT receive
-const SYSTEM_FIELDS = [
-  'id',
-  'createdAt',
-  'updatedAt',
-  'publishedAt',
-  'createdBy',
-  'updatedBy',
-];
-
-const sanitize = (entry) => {
-  const clean = { ...entry };
-  for (const field of SYSTEM_FIELDS) {
-    delete clean[field];
-  }
-  return clean;
-};
-
 module.exports = async ({ strapi }) => {
-  const raw = fs.readFileSync('export.json', 'utf8');
-  const data = JSON.parse(raw);
+  const data = JSON.parse(fs.readFileSync('sqlite-export.json', 'utf8'));
 
   for (const uid of Object.keys(data)) {
-    console.log(`\nImporting ${uid}`);
+    console.log(`Importing ${uid}`);
 
-    const entries = data[uid];
-    let count = 0;
+    for (const entry of data[uid]) {
+      const { id, createdAt, updatedAt, publishedAt, ...rest } = entry;
 
-    for (let i = 0; i < entries.length; i += BATCH_SIZE) {
-      const batch = entries.slice(i, i + BATCH_SIZE);
-
-      for (const entry of batch) {
-        await strapi.entityService.create(uid, {
-          data: sanitize(entry),
-        });
-        count++;
+      // Flatten relational fields to IDs only
+      for (const key in rest) {
+        if (Array.isArray(rest[key])) {
+          rest[key] = rest[key].map((item) => item.id);
+        } else if (rest[key] && typeof rest[key] === 'object' && 'id' in rest[key]) {
+          rest[key] = rest[key].id;
+        }
       }
 
-      console.log(`  Imported ${count}/${entries.length}`);
+      try {
+        await strapi.db.query(uid).create({
+          data: {
+            ...rest,
+            publishedAt: publishedAt || null, // preserve publish state
+          },
+        });
+      } catch (err) {
+        console.error(`Error importing ${uid}:`, err);
+      }
     }
   }
 
-  console.log('\n✅ Import complete');
+  console.log('✅ MySQL import complete');
 };
